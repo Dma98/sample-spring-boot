@@ -56,7 +56,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'docker container rm -f java-app || true'
-                sh 'docker run -d -p 8090:8080 -v ./src/main/java/com/example/HelloWorldApplication.java:/app --name=java-app ${IMAGE_NAME}'
+                sh 'gradle clean'
+                sh 'gradle build'
+                sh 'docker run -d -p 8090:8080 --name=java-app ${IMAGE_NAME}'
             }
         }
 
