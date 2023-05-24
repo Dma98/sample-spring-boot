@@ -5,10 +5,16 @@ pipeline {
 
     tools {
         gradle 'gradle-default'
+        dockerTool 'docker-default'
     }
 
     triggers {
         githubPush()
+    }
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('my_docker_creds')
+        IMAGE_NAME = 'dmanov/java-app'
     }
 
     stages {
@@ -19,7 +25,6 @@ pipeline {
             }
 
         }
-        
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/stoenpav/sample-spring-boot'
@@ -36,7 +41,11 @@ pipeline {
                 sh 'gradle test'
             }
         }
+        stage('Docker-build') {
+            steps {
+                sh 'docker build -t ${IMAGE_NAME} -f Dockerfile .'
+                sh 'docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${BUILD_NUMBER}'
+            }
+        }
     }
-
-
 }
