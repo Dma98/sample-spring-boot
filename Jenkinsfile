@@ -4,7 +4,7 @@ pipeline {
     }
 
     tools {
-        nodejs 'nodejs'
+        gradle 'gradle-default'
     }
 
     triggers {
