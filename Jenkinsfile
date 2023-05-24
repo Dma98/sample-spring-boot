@@ -13,7 +13,7 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('my_docker_creds')
+        DOCKERHUB_CREDENTIALS = credentials('my_dockerhubs_creds')
         IMAGE_NAME = 'dmanov/java-app'
     }
 
