@@ -53,5 +53,12 @@ pipeline {
                 sh 'docker push ${IMAGE_NAME}:${BUILD_NUMBER}'
             }
         }
+        stage('Deploy') {
+            steps {
+                sh 'docker container rm -f java-app || true'
+                sh 'docker run -d -p 8090:8080 --name=java-app ${IMAGE_NAME}'
+            }
+        }
+
     }
 }
