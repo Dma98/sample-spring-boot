@@ -56,9 +56,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'docker container rm -f java-app || true'
-                sh 'docker run -d -p 8090:8080 -v ./:/app --name=java-app ${IMAGE_NAME}'
+                sh 'docker run -d -p 8090:8080 -v $PWD/sample-spring-boot:/app --name=java-app ${IMAGE_NAME}'
             }
         }
 
     }
 }
+
