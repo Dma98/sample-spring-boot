@@ -47,5 +47,10 @@ pipeline {
                 sh 'docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${BUILD_NUMBER}'
             }
         }
+        stage('Docker-push') {
+            steps {
+                sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}' 
+            }   sh 'docker push ${IMAGE_NAME}:${BUILD_NUMBER}'
+        }
     }
 }
