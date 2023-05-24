@@ -50,7 +50,7 @@ pipeline {
         stage('Docker-push') {
             steps {
                 sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}' 
-            }   sh 'docker push ${IMAGE_NAME}:${BUILD_NUMBER}'
+                sh 'docker push ${IMAGE_NAME}:${BUILD_NUMBER}'
         }
     }
 }
