@@ -26,6 +26,6 @@ public class HelloWorldApplicationTests {
         assertEquals(200, status);
 
         String content = mvcResult.getResponse().getContentAsString();
-        assertEquals("DevOps", content);
+        assertEquals("!DevOps!", content);
     }
 }
