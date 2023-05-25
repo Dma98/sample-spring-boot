@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/stoenpav/sample-spring-boot'
+                git branch: 'main', url: 'https://github.com/Dma98/sample-spring-boot'
 
             }
         }
